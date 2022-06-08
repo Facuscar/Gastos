@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { generarId } from './helpers'
 import Header from './components/Header'
 import Modal from './components/Modal'
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
@@ -22,9 +23,18 @@ function App() {
     }, 500)
   }
 
+  const ocultarModal = () => {
+    setTimeout(() => {
+        setModal(false); 
+    }, 500);
+    setAnimarModal(false);
+  }
+
   const guardarGasto = gasto => {
-    console.log(gasto);
-}
+    gasto.id = generarId();
+    setGastos([...gastos, gasto]);
+    ocultarModal();
+  }
 
   return (
    <div>
@@ -43,10 +53,9 @@ function App() {
      
       { modal && (
         <Modal 
-        setModal={setModal}
         animarModal={animarModal}
-        setAnimarModal={setAnimarModal}
         guardarGasto={guardarGasto}
+        ocultarModal={ocultarModal}
           />
       )}
 

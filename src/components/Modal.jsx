@@ -3,19 +3,14 @@ import { useState } from 'react';
 import Mensaje from './Mensaje';
 import CerrarBtn from '../img/cerrar.svg';
 
-function Modal({setModal, setAnimarModal,animarModal}) {
+function Modal({animarModal, guardarGasto, ocultarModal}) {
 
     const [mensaje, setMensaje] = useState('');
     const [nombre, setNombre] = useState('');
     const [cantidad, setCantidad] = useState(0);
     const [categoria, setCategoria] = useState('');
  
-    const ocultarModal = () => {
-        setTimeout(() => {
-            setModal(false); 
-        }, 500);
-        setAnimarModal(false);
-    }
+    
 
     const handleSubmit = e => {
         e.preventDefault();
