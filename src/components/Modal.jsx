@@ -20,6 +20,7 @@ function Modal({animarModal, guardarGasto, ocultarModal}) {
             setTimeout(() => {
                 setMensaje('');
             }, 2500);
+            return;
         }
 
         guardarGasto({nombre, cantidad, categoria});
