@@ -10,7 +10,13 @@ function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
     const [cantidad, setCantidad] = useState(0);
     const [categoria, setCategoria] = useState('');
  
-    
+    useEffect(() => {
+        if( Object.keys(gastoEditar).length > 0) {
+            setNombre(gastoEditar.nombre);
+            setCantidad(gastoEditar.cantidad);
+            setCategoria(gastoEditar.categoria);
+        }
+    }, []);
 
     const handleSubmit = e => {
         e.preventDefault();

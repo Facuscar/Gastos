@@ -20,13 +20,15 @@ function App() {
 
   useEffect (() => {
     if( Object.keys(gastoEditar).length > 0){
-      handleNuevoGasto();
+      handleNuevoGasto(false);
     } 
   }, [gastoEditar]);
  
-  const handleNuevoGasto = () => {
+  const handleNuevoGasto = (creating=true) => {
     setModal(modal ? false : true)
-
+    if(creating){
+      setGastoEditar({});
+    }
     setTimeout(() => {
       setAnimarModal(true);
     }, 500)
