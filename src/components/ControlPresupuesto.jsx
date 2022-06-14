@@ -1,5 +1,10 @@
-function ControlPresupuesto({presupuesto, setPresupuesto}
-) {
+import { useEffect } from 'react';
+
+function ControlPresupuesto({gastos, presupuesto}) {
+
+    useEffect(() => {
+        console.log('Gastos');
+    }, [gastos])
 
     const formatearCantidad = (cantidad) => {
         return cantidad.toLocaleString('en-US', {
