@@ -1,8 +1,6 @@
 import Gasto from "./Gasto";
 
-function ListadoGastos({gastos, setGastoEditar}) {
-
-    console.log(gastos);
+function ListadoGastos({gastos, setGastoEditar, eliminarGasto}) {
 
     return ( 
         <div className="listado-gastos contenedor">
@@ -13,6 +11,7 @@ function ListadoGastos({gastos, setGastoEditar}) {
                     key={gasto.id}
                     gasto={gasto}
                     setGastoEditar={setGastoEditar}
+                    eliminarGasto={eliminarGasto}
                     />
                 ))
             }
