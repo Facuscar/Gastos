@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Mensaje from './Mensaje';
 import CerrarBtn from '../img/cerrar.svg';
 
-function Modal({animarModal, guardarGasto, ocultarModal}) {
+function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
 
     const [mensaje, setMensaje] = useState('');
     const [nombre, setNombre] = useState('');

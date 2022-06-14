@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { generarId } from './helpers'
 import Header from './components/Header'
@@ -15,6 +15,14 @@ function App() {
   const [animarModal, setAnimarModal] = useState(false);
 
   const [gastos, setGastos] = useState([]);
+
+  const [gastoEditar, setGastoEditar] = useState({});
+
+  useEffect (() => {
+    if( Object.keys(gastoEditar).length > 0){
+      handleNuevoGasto();
+    } 
+  }, [gastoEditar]);
  
   const handleNuevoGasto = () => {
     setModal(modal ? false : true)
@@ -51,7 +59,10 @@ function App() {
      {presupuestoValido && (
        <>
         <main>
-          <ListadoGastos gastos={gastos} ></ListadoGastos>
+          <ListadoGastos 
+          gastos={gastos} 
+          setGastoEditar={setGastoEditar}
+          />
         </main>
         <div className='nuevo-gasto'>
         <img src={IconoNuevoGasto} alt="Icono agregar gasto" onClick={handleNuevoGasto} />
@@ -64,6 +75,7 @@ function App() {
         animarModal={animarModal}
         guardarGasto={guardarGasto}
         ocultarModal={ocultarModal}
+        gastoEditar={gastoEditar}
           />
       )}
 
