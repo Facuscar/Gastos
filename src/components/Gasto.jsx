@@ -20,7 +20,7 @@ const diccionarioIconos = {
     suscripciones : IconoSuscripciones,
 }
 
-function Gasto({key, gasto, setGastoEditar}) {
+function Gasto({gasto, setGastoEditar}) {
 
     const leadingActions = () => (
         <LeadingActions>

@@ -24,9 +24,9 @@ function App() {
     } 
   }, [gastoEditar]);
  
-  const handleNuevoGasto = (creating=true) => {
+  const handleNuevoGasto = (creando=true) => {
     setModal(modal ? false : true)
-    if(creating){
+    if(creando){
       setGastoEditar({});
     }
     setTimeout(() => {
@@ -37,14 +37,25 @@ function App() {
   const ocultarModal = () => {
     setTimeout(() => {
         setModal(false); 
+        setGastoEditar({});
     }, 500);
     setAnimarModal(false);
+
+    
   }
 
   const guardarGasto = gasto => {
-    gasto.id = generarId();
-    gasto.fecha = Date.now();
-    setGastos([...gastos, gasto]);
+
+    if(gasto.id) {
+      //Actualizar
+      const gastosActualizados = gastos.map( gastoState => gastoState.id === gasto.id ? gasto : gastoState)
+      setGastos(gastosActualizados);
+    } else{
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+      setGastos([...gastos, gasto]);
+    }
+   
     ocultarModal();
   }
 
