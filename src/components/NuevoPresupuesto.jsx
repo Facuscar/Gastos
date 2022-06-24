@@ -15,6 +15,14 @@ function NuevoPresupuesto({presupuesto, setPresupuesto, setPresupuestoValido, pr
         setMensaje('');
     }
 
+    const setPresupuestoNumber = (value => {
+        setPresupuesto(Number(value));
+    })
+
+    const deshabilitarBoton = (e) => {
+        e
+    }
+
      return ( 
         <div className="contenedor-presupuesto contenedor sombra">
 
@@ -27,10 +35,10 @@ function NuevoPresupuesto({presupuesto, setPresupuesto, setPresupuestoValido, pr
                     type="number"
                     placeholder="Añade tu presupuesto"
                     value={presupuesto}
-                    onChange={ e => setPresupuesto(Number(e.target.value))}
+                    onChange={ e => setPresupuestoNumber(e.target.value)}
                      />
                 </div>
-                <input type="submit"  value="Añadir" onClick={handlePresupuesto}/>
+                <input disabled="true" type="submit"  value="Añadir" onClick={[handlePresupuesto, e => deshabilitarBoton(e)]} />
 
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
             </form>

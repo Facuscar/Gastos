@@ -14,7 +14,6 @@ function ControlPresupuesto({gastos, presupuesto}) {
 
         //Calcular el porcentaje de lo gastado en cuanto al presupuesto
         const nuevoPorcentaje =((totalGastado / presupuesto) * 100).toFixed(2);
-        console.log(nuevoPorcentaje);
         setTimeout(() => {
             setPorcentaje(nuevoPorcentaje);
         }, 1000);
@@ -44,13 +43,13 @@ function ControlPresupuesto({gastos, presupuesto}) {
             </div>
             <div className="contenido-presupuesto">
                 <p>
-                    <span>Presupuesto: </span> {formatearCantidad(presupuesto)}
+                    <span>Presupuesto: </span> {formatearCantidad(Number(presupuesto))}
                 </p>
                 <p>
-                    <span>Disponible: </span> {formatearCantidad(disponible)}
+                    <span>Disponible: </span> {formatearCantidad(Number(disponible))}
                 </p>
                 <p>
-                    <span>Gastado: </span> {formatearCantidad(gastado)}
+                    <span>Gastado: </span> {formatearCantidad(Number(gastado))}
                 </p>
             </div>
         </div>

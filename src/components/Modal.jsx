@@ -7,7 +7,7 @@ function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
 
     const [mensaje, setMensaje] = useState('');
     const [nombre, setNombre] = useState('');
-    const [cantidad, setCantidad] = useState(0);
+    const [cantidad, setCantidad] = useState('');
     const [categoria, setCategoria] = useState('');
     const [fecha, setFecha] = useState('');
     const [id, setId] = useState('');
@@ -32,10 +32,12 @@ function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
             }, 2500);
             return;
         }
-
         guardarGasto({nombre, cantidad, categoria, id, fecha});
     }
 
+    const setCantidadNumber = value => {
+        setCantidad(Number(value));
+    }
     return ( 
         <div className="modal">
             <div className="cerrar-modal">
@@ -55,7 +57,7 @@ function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
                 <div className='campo'>
                     <label htmlFor="nombre">Cantidad</label>
 
-                    <input type="number" placeholder='Añade el monto'  id='cantidad' value={cantidad} onChange={( e => setCantidad(Number(e.target.value)))}/>
+                    <input type="number" placeholder='Añade el monto'  id='cantidad' value={cantidad} onChange={( e => setCantidadNumber(e.target.value))}/>
                 </div>
 
                 <div className='campo'>

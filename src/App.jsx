@@ -8,7 +8,7 @@ import IconoNuevoGasto from './img/nuevo-gasto.svg'
 
 function App() {
   
-  const [presupuesto, setPresupuesto] = useState(0);
+  const [presupuesto, setPresupuesto] = useState( Number(localStorage.getItem('presupuesto')) ?? '' );
   const [presupuestoValido, setPresupuestoValido] = useState(false);
 
   const [modal, setModal] = useState(false);
@@ -23,6 +23,18 @@ function App() {
       handleNuevoGasto(false);
     } 
   }, [gastoEditar]);
+
+  useEffect (() => {
+    localStorage.setItem('presupuesto', presupuesto ?? 0);
+  }, [presupuesto]);
+
+  useEffect (() => {
+    const presupuestoLS = Number(localStorage.getItem('presupuesto')) ?? '';
+
+    if(presupuestoLS > 0){
+      setPresupuestoValido(true);
+    }
+  }, []);
  
   const handleNuevoGasto = (creando=true) => {
     setModal(modal ? false : true)
@@ -54,6 +66,7 @@ function App() {
       gasto.id = generarId();
       gasto.fecha = Date.now();
       setGastos([...gastos, gasto]);
+      console.log(gasto.cantidad);
     }
    
     ocultarModal();
