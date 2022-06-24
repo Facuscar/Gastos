@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar'
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import "react-circular-progressbar/dist/styles.css"
 
 function ControlPresupuesto({gastos, presupuesto}) {
@@ -15,7 +15,9 @@ function ControlPresupuesto({gastos, presupuesto}) {
         //Calcular el porcentaje de lo gastado en cuanto al presupuesto
         const nuevoPorcentaje =((totalGastado / presupuesto) * 100).toFixed(2);
         console.log(nuevoPorcentaje);
-        setPorcentaje(nuevoPorcentaje);
+        setTimeout(() => {
+            setPorcentaje(nuevoPorcentaje);
+        }, 1000);
         setDisponible(totalDisponible);
         setGastado(totalGastado);
     }, [gastos])
@@ -31,7 +33,14 @@ function ControlPresupuesto({gastos, presupuesto}) {
     return ( 
         <div className="contenedor-presupuesto contenedor sombra dos-columnas">
             <div>
-                <CircularProgressbar value={porcentaje}></CircularProgressbar>
+                <CircularProgressbar 
+                value={porcentaje} 
+                styles={buildStyles({
+                    pathColor: '#3B82F6',
+                    trailColor: '#F5F5F5',
+                })}
+                text={`${porcentaje}% Gastado`}
+                ></CircularProgressbar>
             </div>
             <div className="contenido-presupuesto">
                 <p>
