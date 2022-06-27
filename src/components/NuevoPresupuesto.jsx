@@ -1,27 +1,30 @@
 import { useState } from 'react';
 import Mensaje from './Mensaje';
 
-function NuevoPresupuesto({presupuesto, setPresupuesto, setPresupuestoValido, presupuestoValido}) {
+function NuevoPresupuesto({presupuesto, setPresupuesto, setPresupuestoValido}) {
 
     const [mensaje, setMensaje] = useState('');
+    const [disabled, setDisabled] = useState(false);
 
     const handlePresupuesto = (e) => {
         e.preventDefault();
-        if(!presupuesto || presupuesto < 0){
-            setMensaje('No es un presupuesto válido');
-            return;
+        if(!disabled){
+            if(!presupuesto || presupuesto < 0){
+                setMensaje('No es un presupuesto válido');
+                return;
+            }
+            setPresupuestoValido(true);
+            setMensaje('');
         }
-        setPresupuestoValido(true);
-        setMensaje('');
+        setTimeout(() => {
+            setDisabled(false);
+        }, 250);
+        setDisabled(true);
     }
 
     const setPresupuestoNumber = (value => {
         setPresupuesto(Number(value));
     })
-
-    const deshabilitarBoton = (e) => {
-        e
-    }
 
      return ( 
         <div className="contenedor-presupuesto contenedor sombra">
@@ -38,7 +41,7 @@ function NuevoPresupuesto({presupuesto, setPresupuesto, setPresupuestoValido, pr
                     onChange={ e => setPresupuestoNumber(e.target.value)}
                      />
                 </div>
-                <input disabled="true" type="submit"  value="Añadir" onClick={[handlePresupuesto, e => deshabilitarBoton(e)]} />
+                <input if type="submit" value="Añadir" onClick={[handlePresupuesto]} />
 
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
             </form>

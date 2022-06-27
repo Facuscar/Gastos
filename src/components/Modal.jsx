@@ -11,6 +11,7 @@ function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
     const [categoria, setCategoria] = useState('');
     const [fecha, setFecha] = useState('');
     const [id, setId] = useState('');
+    const [creando, setCreando] = useState(false);
  
     useEffect(() => {
         if( Object.keys(gastoEditar).length > 0) {
@@ -22,7 +23,15 @@ function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
         }
     }, []);
 
+    const creandoGasto = () => {
+        setCreando(true);
+        setTimeout(() => {
+            setCreando(false);
+        }, 500);
+    }
+
     const handleSubmit = e => {
+        
         e.preventDefault();
 
         if([nombre, cantidad, categoria].includes('')){
@@ -32,7 +41,10 @@ function Modal({animarModal, guardarGasto, ocultarModal, gastoEditar}) {
             }, 2500);
             return;
         }
-        guardarGasto({nombre, cantidad, categoria, id, fecha});
+        if(!creando){
+            guardarGasto({nombre, cantidad, categoria, id, fecha});
+            creandoGasto();
+        }   
     }
 
     const setCantidadNumber = value => {

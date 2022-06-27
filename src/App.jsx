@@ -14,7 +14,7 @@ function App() {
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false);
 
-  const [gastos, setGastos] = useState([]);
+  const [gastos, setGastos] = useState( JSON.parse(localStorage.getItem('gastos')) ?? [] );
 
   const [gastoEditar, setGastoEditar] = useState({});
 
@@ -35,7 +35,11 @@ function App() {
       setPresupuestoValido(true);
     }
   }, []);
- 
+
+  useEffect (() => {
+    localStorage.setItem('gastos', JSON.stringify(gastos) ?? []);
+  }, [gastos])
+
   const handleNuevoGasto = (creando=true) => {
     setModal(modal ? false : true)
     if(creando){
