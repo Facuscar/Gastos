@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 import { generarId } from './helpers'
 import Header from './components/Header'
 import ListadoGastos from './components/ListadoGastos'
