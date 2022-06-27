@@ -35,8 +35,9 @@ function ControlPresupuesto({gastos, presupuesto}) {
                 <CircularProgressbar 
                 value={porcentaje} 
                 styles={buildStyles({
-                    pathColor: '#3B82F6',
+                    pathColor: porcentaje > 100 ? '#DC2626' : '#3B82F6',
                     trailColor: '#F5F5F5',
+                    textColor: porcentaje > 100 ? '#DC2626' : '#3B82F6',
                 })}
                 text={`${porcentaje}% Gastado`}
                 ></CircularProgressbar>
@@ -45,7 +46,7 @@ function ControlPresupuesto({gastos, presupuesto}) {
                 <p>
                     <span>Presupuesto: </span> {formatearCantidad(Number(presupuesto))}
                 </p>
-                <p>
+                <p className={`${disponible < 0 ? 'negativo' : ''}`}>
                     <span>Disponible: </span> {formatearCantidad(Number(disponible))}
                 </p>
                 <p>
