@@ -7,7 +7,7 @@ function Filtros({filtro, setFiltro}) {
                 <div className='campo'>
                    <label htmlFor="">Filtrar gastos</label>
                    <select value={filtro} onChange={e => setFiltro(e.target.value)}>
-                        <option value="">--Seleccione--</option>
+                        <option value="">Todas las categorias</option>
                         <option value="ahorro">Ahorro</option>
                         <option value="comida">Comida</option>     
                         <option value="casa">Casa</option>     
