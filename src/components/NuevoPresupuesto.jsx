@@ -4,22 +4,17 @@ import Mensaje from './Mensaje';
 function NuevoPresupuesto({presupuesto, setPresupuesto, setPresupuestoValido}) {
 
     const [mensaje, setMensaje] = useState('');
-    const [disabled, setDisabled] = useState(false);
 
     const handlePresupuesto = (e) => {
         e.preventDefault();
-        if(!disabled){
-            if(!presupuesto || presupuesto < 0){
-                setMensaje('No es un presupuesto válido');
-                return;
-            }
-            setPresupuestoValido(true);
-            setMensaje('');
+     
+        if(!presupuesto || presupuesto < 0){
+            setMensaje('No es un presupuesto válido');
+            return;
         }
-        setTimeout(() => {
-            setDisabled(false);
-        }, 250);
-        setDisabled(true);
+        setPresupuestoValido(true);
+        setMensaje('');
+    
     }
 
     const setPresupuestoNumber = (value => {
@@ -41,7 +36,7 @@ function NuevoPresupuesto({presupuesto, setPresupuesto, setPresupuestoValido}) {
                     onChange={ e => setPresupuestoNumber(e.target.value)}
                      />
                 </div>
-                <input if type="submit" value="Añadir" onClick={[handlePresupuesto]} />
+                <input type="submit" value="Añadir" onClick={handlePresupuesto} />
 
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
             </form>
